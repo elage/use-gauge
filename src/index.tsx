@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { degreesToRadians, makeTickMarks, polarToCartesian } from './lib';
 
-interface UseGaugeParams {
+export interface UseGaugeParams {
   diameter: number;
   startAngle: number;
   endAngle: number;
@@ -38,7 +38,7 @@ export function useGauge(params: UseGaugeParams) {
   const [minValue, maxValue] = domain;
 
   const ticks = useMemo(() => {
-    return makeTickMarks(startAngle, endAngle, numTicks).reverse();
+    return makeTickMarks(startAngle, endAngle, numTicks);
   }, [startAngle, endAngle, numTicks]);
 
   const getLabelProps = useCallback(
@@ -76,7 +76,7 @@ export function useGauge(params: UseGaugeParams) {
     const angleRange = endAngle - startAngle;
     const valueRange = maxValue - minValue;
     const value = minValue + ((angle - startAngle) / angleRange) * valueRange;
-    return Math.round(value);
+    return value;
   };
 
   const valueToAngle = (value: number) => {

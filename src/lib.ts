@@ -11,9 +11,9 @@ export const makeTickMarks = (
   const angleRange = maxAngle - minAngle;
   const angleStep = angleRange / (numTicks - 1);
   for (let i = 0; i < numTicks; i++) {
-    tickMarks.push(Math.floor(minAngle + i * angleStep));
+    tickMarks.push(minAngle + i * angleStep);
   }
-  return tickMarks.reverse();
+  return tickMarks;
 };
 
 export const polarToCartesian = (
